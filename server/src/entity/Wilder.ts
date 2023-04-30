@@ -9,6 +9,9 @@ export class Wilder {
   @Column()
   name: string;
 
-  @OneToMany(() => Grade, (grade) => grade.wilder)
+  @OneToMany(() => Grade, (grade:Grade) => grade.wilder)
   grades: Grade[];
+
+    @Column()
+    company: string;
 }
