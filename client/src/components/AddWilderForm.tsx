@@ -7,14 +7,17 @@ const AddWilderForm = ({
   setLastUpdate: React.Dispatch<React.SetStateAction<number>>;
 }) => {
   const [wilderName, setName] = useState("");
-  const [city, setCity] = useState("");
+  const [age, setAge] = useState("");
+  const [gender, setGender] = useState("");
   return (
     <form
       onSubmit={async (e) => {
         e.preventDefault();
         await axios.post("http://localhost:5000/api/wilder", {
           name: wilderName,
-          city: city,
+          age: age,
+          gender: gender,
+          photo_id: Math.floor(Math.random() * 9),
         });
         setLastUpdate(new Date().getTime());
       }}
@@ -28,13 +31,30 @@ const AddWilderForm = ({
         }}
       />
       <br />
-      <label>City </label>
+      <label>Age </label>
       <input
-        value={city}
+        value={age}
         onChange={(e) => {
-          setCity(e.target.value);
+          setAge(e.target.value);
         }}
       />
+      <br />
+      <label>Gender </label>
+      <select
+        onChange={(e) => {
+          setGender(e.target.value);
+        }}
+        name="wilders"
+        id="wilderselectgender"
+      >
+        <option value="">--Please choose an option--</option>
+        <option key="1" value="Male">
+          Male
+        </option>
+        <option key="1" value="Female">
+          Female
+        </option>
+      </select>
       <br />
       <button>Submit</button>
     </form>

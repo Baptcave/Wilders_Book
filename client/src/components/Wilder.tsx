@@ -1,20 +1,23 @@
 import axios from "axios";
-import blank_profile from "../assets/profile.png";
 import Skill, { ISkillProps } from "./Skill";
 
 export interface IWilderProps {
   name: string;
   id: number;
   skills: ISkillProps[];
+  photo_id: string;
 }
 
 const handleDelete = (id: number) => {
   axios.delete("http://localhost:5000/api/wilder/" + id);
 };
-const Wilder = ({ name, id, skills }: IWilderProps) => {
+const Wilder = ({ name, id, skills, photo_id }: IWilderProps) => {
   return (
     <article className="card">
-      <img src={blank_profile} alt="Jane Doe Profile" />
+      <img
+        src={process.env.PUBLIC_URL + photo_id + ".png"}
+        alt="Jane Doe Profile"
+      />
       <h3>{name}</h3>
       <button onClick={() => handleDelete(id)}>Delete</button>
       <p>
@@ -28,6 +31,12 @@ const Wilder = ({ name, id, skills }: IWilderProps) => {
         {skills.map((skill) => (
           <Skill key={skill.title} title={skill.title} votes={skill.votes} />
         ))}
+      </ul>
+      <h4>Experience:</h4>
+      <ul className="experience">
+        <li>2018 - 2020: Vercel</li>
+        <li>2016 - 2018: Orange</li>
+        <li>2014 - 2016: Netflix</li>
       </ul>
     </article>
   );

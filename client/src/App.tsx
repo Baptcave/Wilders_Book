@@ -9,6 +9,10 @@ interface ISkillFromAPI {
   id: number;
   name: string;
 }
+interface IProfileFromAPI {
+  gender: string;
+  photo_id: string;
+}
 
 interface IGradeFromAPI {
   grade: number;
@@ -19,6 +23,7 @@ interface IWilderFromAPI {
   name: string;
   id: number;
   grades: IGradeFromAPI[];
+  profile: IProfileFromAPI;
 }
 
 const formatWildersFromApi = (wilders: IWilderFromAPI[]): IWilderProps[] =>
@@ -29,6 +34,7 @@ const formatWildersFromApi = (wilders: IWilderFromAPI[]): IWilderProps[] =>
       skills: wilder.grades.map((grade) => {
         return { votes: grade.grade, title: grade.skill.name };
       }),
+      photo_id: wilder.profile?.photo_id,
     };
   });
 
@@ -65,6 +71,7 @@ function App() {
                 name={wilder.name}
                 id={wilder.id}
                 skills={wilder.skills}
+                photo_id={wilder.photo_id}
               />
             );
           })}

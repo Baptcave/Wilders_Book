@@ -17,6 +17,7 @@ app.post("/api/wilder", wilderController.create);
 app.get("/api/wilder", wilderController.read);
 app.put("/api/wilder/:id", wilderController.update);
 app.delete("/api/wilder/:id", wilderController.delete);
+app.post("/api/createProfile", wilderController.createProfile);
 
 app.post("/api/skill", skillController.create);
 app.get("/api/skill", skillController.read);

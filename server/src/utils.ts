@@ -3,12 +3,12 @@ import { Grade } from "./entity/Grade";
 import { Skill } from "./entity/Skill";
 import { Wilder } from "./entity/Wilder";
 import { Company } from "./entity/Company";
-import { Photo } from "./entity/Photo";
+import { Profile } from "./entity/Profile";
 const dataSource = new DataSource({
   type: "sqlite",
   database: "./wildersdb.sqlite",
   synchronize: true,
-  entities: [Wilder, Skill, Grade, Company, Photo],
+  entities: [Wilder, Skill, Grade, Company, Profile],
 });
 
 export default dataSource;

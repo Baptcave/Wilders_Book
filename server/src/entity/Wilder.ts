@@ -1,6 +1,6 @@
-import { Entity, PrimaryGeneratedColumn, Column, OneToMany, ManyToOne } from "typeorm";
+import { Entity, PrimaryGeneratedColumn, Column, OneToMany, ManyToOne, OneToOne, JoinColumn } from "typeorm";
 import { Grade } from "./Grade";
-import { Photo } from "./Photo";
+import { Profile } from "./Profile";
 import { Company } from "./Company";
 
 @Entity()
@@ -17,6 +17,7 @@ export class Wilder {
    @ManyToOne(() => Company, (company:Company) => company.wilders)
     company: Company;
 
-    @OneToMany(() => Photo, (photo) => photo.wilder) // note: we will create author property in the Photo class below
-    photos: Photo[]
+    @OneToOne(() => Profile)
+    @JoinColumn()
+    profile: Profile
 }
