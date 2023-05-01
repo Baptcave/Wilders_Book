@@ -28,6 +28,7 @@ const AddGradeForm = () => {
         });
       }}
     >
+      <h3>Add Grade to Wilder</h3>
       wilderid
       <select
         onChange={(e) => {
