@@ -4,6 +4,7 @@ import dataSource from "./utils";
 import wilderController from "./controller/WilderController";
 import skillController from "./controller/SkillController";
 import gradeController from "./controller/GradeController";
+import playController from "./controller/PlayController";
 
 const app = express();
 app.use(cors());
@@ -25,6 +26,9 @@ app.delete("/api/skill/:id", skillController.delete);
 app.put("/api/skill/:id", skillController.update);
 
 app.post("/api/grade", gradeController.create);
+
+// test endpoint
+app.get("/api/play", playController.playWithTypeOrm);
 
 const start = async (): Promise<void> => {
   await dataSource.initialize();
