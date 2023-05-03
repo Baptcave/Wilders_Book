@@ -1,4 +1,5 @@
 export interface ISkillProps {
+  id?: number;
   title: string;
   votes: number;
 }

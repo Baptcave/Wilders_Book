@@ -7,7 +7,7 @@ const AddSkillToWilderForm = ({ wilders, setWilders }) => {
   const [selectedSkills, setSelectedSkills] = useState([]);
   useEffect(() => {
     const fetchSkills = async () => {
-      const result = await axios.get("http://localhost:5000/api/skill");
+      const result = await axios.get("http://localhost:8000/api/skills");
       console.log(result.data);
       setSkills(result.data);
     };
@@ -19,7 +19,7 @@ const AddSkillToWilderForm = ({ wilders, setWilders }) => {
         e.preventDefault();
         console.log("selectedWilder", selectedWilder);
         console.log("selected skills", selectedSkills);
-        axios.put("http://localhost:5000/api/addskills", {
+        axios.put("http://localhost:8000/api/addskills", {
           wildername: selectedWilder,
           skillname: selectedSkills,
         });

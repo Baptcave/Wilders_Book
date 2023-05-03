@@ -14,18 +14,18 @@ app.get("/", (req, res) => {
   res.send("Hello world from express");
 });
 
-app.post("/api/wilder", wilderController.create);
-app.get("/api/wilder", wilderController.read);
-app.put("/api/wilder/:id", wilderController.update);
-app.delete("/api/wilder/:id", wilderController.delete);
+app.post("/api/wilders", wilderController.create);
+app.get("/api/wilders", wilderController.read);
+app.put("/api/wilders/:id", wilderController.update);
+app.delete("/api/wilders/:id", wilderController.delete);
 app.post("/api/createProfile", wilderController.createProfile);
 
-app.post("/api/skill", skillController.create);
-app.get("/api/skill", skillController.read);
-app.delete("/api/skill/:id", skillController.delete);
-app.put("/api/skill/:id", skillController.update);
+app.post("/api/skills", skillController.create);
+app.get("/api/skills", skillController.read);
+app.delete("/api/skills/:id", skillController.delete);
+app.put("/api/skills/:id", skillController.update);
 
-app.post("/api/grade", gradeController.create);
+app.post("/api/grades", gradeController.create);
 
 // test endpoint
 app.get("/api/play", playController.playWithTypeOrm);
@@ -33,7 +33,7 @@ app.get("/api/play", playController.playWithTypeOrm);
 const start = async (): Promise<void> => {
   await dataSource.initialize();
 
-  app.listen(5000, () => {
+  app.listen(8000, () => {
     console.log("Server started");
   });
 };

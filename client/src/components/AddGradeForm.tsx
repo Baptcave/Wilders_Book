@@ -1,27 +1,37 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { IWilderProps } from "./Wilder";
+import { ISkillProps } from "./Skill";
 
 const AddGradeForm = () => {
-  const [wilderId, setWilderId] = useState("");
-  const [skillId, setSkillId] = useState("");
-  const [grade, setGrade] = useState("");
+  const [wilderId, setWilderId] = useState<string>("");
+  const [skillId, setSkillId] = useState<string>("");
+  const [grade, setGrade] = useState<string>("");
   const [wilders, setWilders] = useState<IWilderProps[]>([]);
+  const [skills, setSkills] = useState<ISkillProps[]>([]);
   useEffect(() => {
     const fetchWilders = async () => {
-      const result = await axios.get<IWilderProps[]>(
-        "http://localhost:5000/api/wilder"
+      const wildersAPI = await axios.get<IWilderProps[]>(
+        "http://localhost:8000/api/wilders"
       );
-      console.log("wilders", result);
-      setWilders(result.data);
+      console.log("wilders", wildersAPI);
+      setWilders(wildersAPI.data);
+    };
+    const fetchSkills = async () => {
+      const skillsAPI = await axios.get<ISkillProps[]>(
+        "http://localhost:8000/api/skills"
+      );
+      console.log("skills", skillsAPI);
+      setSkills(skillsAPI.data);
     };
     fetchWilders();
+    fetchSkills();
   }, []);
   return (
     <form
       onSubmit={(e) => {
         e.preventDefault();
-        axios.post("http://localhost:5000/api/grade", {
+        axios.post("http://localhost:8000/api/grades", {
           wilderId: wilderId,
           skillId: skillId,
           grade: grade,
@@ -46,12 +56,20 @@ const AddGradeForm = () => {
       </select>
       <br></br>
       skillid
-      <input
-        value={skillId}
+      <select
         onChange={(e) => {
           setSkillId(e.target.value);
         }}
-      />
+        name="skills"
+        id="wilderselectskill"
+      >
+        <option value="">--Please choose an option--</option>
+        {skills.map((skill) => (
+          <option key={skill.id} value={skill.title}>
+            {skill.title}
+          </option>
+        ))}
+      </select>
       <br></br>
       grade
       <input

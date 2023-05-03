@@ -1,5 +1,6 @@
 import axios from "axios";
 import Skill, { ISkillProps } from "./Skill";
+import blank_profile from "../assets/profile.png";
 
 export interface IWilderProps {
   name: string;
@@ -9,13 +10,16 @@ export interface IWilderProps {
 }
 
 const handleDelete = (id: number) => {
-  axios.delete("http://localhost:5000/api/wilder/" + id);
+  axios.delete("http://localhost:8000/api/wilders/" + id);
 };
+
 const Wilder = ({ name, id, skills, photo_id }: IWilderProps) => {
   return (
     <article className="card">
       <img
-        src={process.env.PUBLIC_URL + photo_id + ".png"}
+        src={
+          photo_id ? process.env.PUBLIC_URL + photo_id + ".png" : blank_profile
+        }
         alt="Jane Doe Profile"
       />
       <h3>{name}</h3>

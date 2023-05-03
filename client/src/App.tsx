@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 import "./App.css";
 import Wilder, { IWilderProps } from "./components/Wilder";
@@ -44,7 +44,7 @@ function App() {
   useEffect(() => {
     const fetchWilders = async () => {
       const wilderFromApi = await axios.get<IWilderFromAPI[]>(
-        "http://localhost:5000/api/wilder"
+        "http://localhost:8000/api/wilders"
       );
       console.log(wilderFromApi);
       setWilders(formatWildersFromApi(wilderFromApi.data));
